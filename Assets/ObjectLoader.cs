@@ -41,11 +41,16 @@ public class ObjectLoader : MonoBehaviour {
             GameObject obj = loadedObject.GetComponentInChildren<GameObject>();
             //StartCoroutine(Wait());
             */
-            Renderer rend = loadedObject.GetComponentInChildren<Renderer>();
+            Renderer[] rend = loadedObject.GetComponentsInChildren<Renderer>();
             Instantiate(loadedObject.gameObject.transform.GetChild(0).gameObject, loadedObject.transform);
 
-            rend.material.shader = Shader.Find("Unlit/Color");
-            rend.material.color = Color.red;
+            for (int i = 0; i < rend.Length; i++)
+            {
+                rend[i].material.shader = Shader.Find("Unlit/Color");
+                rend[i].material.color = Color.red;
+            }
+            //rend.material.shader = Shader.Find("Unlit/Color");
+            //rend.material.color = Color.red;
             //LoadObject();
             progressText.enabled = false;
             loadButton.SetActive(false);
